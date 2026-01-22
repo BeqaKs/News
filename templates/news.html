@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center mb-4">News</h1>
+
+<div class="row">
+    {% for n in news %}
+    <div class="col-md-4 mb-3">
+        <div class="card h-100">
+
+            {% if n.image_url %}
+            <img src="{{ n.image_url }}" class="card-img-top" alt="News Image">
+            {% endif %}
+
+            <div class="card-body">
+                <h5 class="card-title">{{ n.title }}</h5>
+                <p class="card-text">{{ n.content[:100] }}...</p>
+
+                <a href="{{ url_for('news_detail', news_id=n.id) }}"
+                   class="btn btn-primary">
+                   View Post
+
+                </a>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
