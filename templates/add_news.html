@@ -5,30 +5,30 @@
     <div class="col-lg-8">
         <div class="card shadow border-0 mt-5 mb-5">
             <div class="card-body p-5">
-                <h2 class="mb-4 fw-bold">Write a New Story</h2>
+                <h2 class="mb-4 fw-bold">ახალი პოსტის დამატება</h2>
                 
                 <form method="POST" enctype="multipart/form-data">
                     {{ form.hidden_tag() }}
 
                     <div class="mb-4">
-                        {{ form.title.label(class="form-label fw-bold") }}
-                        {{ form.title(class="form-control form-control-lg", placeholder="Enter a catchy title...") }}
+                        {{ form.title.label(class="form-label fw-bold", text="სათაური") }}
+                        {{ form.title(class="form-control form-control-lg", placeholder="შეიყვანეთ სათაური...") }}
                     </div>
 
                     <div class="mb-4">
-                        {{ form.content.label(class="form-label fw-bold") }}
-                        {{ form.content(class="form-control", rows="8", placeholder="What's happening?") }}
+                        {{ form.content.label(class="form-label fw-bold", text="შინაარსი") }}
+                        {{ form.content(class="form-control", rows="8", placeholder="რა ხდება? დაწერეთ აქ...") }}
                     </div>
 
                     <div class="mb-4">
-                        {{ form.image.label(class="form-label fw-bold") }}
+                        {{ form.image.label(class="form-label fw-bold", text="სურათი") }}
                         {{ form.image(class="form-control") }}
-                        <div class="form-text">Supported formats: JPG, PNG.</div>
+                        <div class="form-text">მხარდაჭერილი ფორმატები: JPG, PNG.</div>
                     </div>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="{{ url_for('index') }}" class="btn btn-light me-2">Cancel</a>
-                        {{ form.submit(class="btn btn-primary px-4") }}
+                        <a href="{{ url_for('index') }}" class="btn btn-light me-2">გაუქმება</a>
+                        {{ form.submit(class="btn btn-primary px-4", value="გამოქვეყნება") }}
                     </div>
                 </form>
             </div>

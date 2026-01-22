@@ -3,7 +3,6 @@ from flask import Flask, render_template, redirect, request, url_for, flash
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.utils import secure_filename
 
-# Import your local modules
 from models import db, User, News
 from forms import RegistrationForm, LoginForm, NewsForm
 
@@ -11,8 +10,7 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "secret-key"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///news.sqlite"
 
-# --- FIX: ABSOLUTE PATH SETUP ---
-# This ensures the computer finds the folder no matter where you run the script from
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 app.config["UPLOAD_FOLDER"] = os.path.join(basedir, "static/uploads")
 
@@ -26,7 +24,7 @@ login_manager.login_message_category = "info"
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# --- ROUTES ---
+
 
 @app.route("/")
 def index():
@@ -83,18 +81,18 @@ def add_news():
     form = NewsForm()
     if form.validate_on_submit():
         filename = None
-        # Handle Image Upload
+   
         if form.image.data:
             file = form.image.data
             filename = secure_filename(file.filename)
             
-            # FIX: Create folder if it doesn't exist
+           
             if not os.path.exists(app.config['UPLOAD_FOLDER']):
                 os.makedirs(app.config['UPLOAD_FOLDER'])
             
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         
-        # Save to DB
+     
         news = News(
             title=form.title.data,
             content=form.content.data,
@@ -105,7 +103,7 @@ def add_news():
         flash("News post created!", "success")
         return redirect(url_for("index"))
     
-    # Check for validation errors and flash them
+   
     if form.errors:
         for err_msg in form.errors.values():
             flash(f"Error: {err_msg}", "danger")

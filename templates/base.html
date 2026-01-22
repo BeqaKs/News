@@ -19,33 +19,40 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold text-primary" href="{{ url_for('index') }}">
-                📰 DailyNews
+            <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="{{ url_for('index') }}">
+                <a class="navbar-brand" href="https://tbcacademy.ge" target="_blank">
+                <img src="{{ url_for('static', filename='/uploads/tbc-logo.png') }}" 
+                     alt="Logo" 
+                     height="40" 
+                     class="me-2">
+                     </a>
+                ახალი ამბები
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
                     
                     {% if current_user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="btn btn-primary btn-sm mx-2 text-white" href="{{ url_for('add_news') }}">+ Create Post</a>
+                            <a class="btn btn-primary btn-sm mx-2 text-white" href="{{ url_for('add_news') }}">+ პოსტის დამატება</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                                 {{ current_user.username }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end border-0 shadow">
-                                <li><a class="dropdown-item" href="{{ url_for('profile') }}">Profile</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('profile') }}">პროფილი</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item text-danger" href="{{ url_for('logout') }}">Logout</a></li>
+                                <li><a class="dropdown-item text-danger" href="{{ url_for('logout') }}">გამოსვლა</a></li>
+                               
                             </ul>
                         </li>
                     {% else %}
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
-                        <li class="nav-item"><a class="btn btn-outline-primary btn-sm ms-2" href="{{ url_for('register') }}">Sign Up</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">შესვლა</a></li>
+                        <li class="nav-item"><a class="btn btn-outline-primary btn-sm ms-2" href="{{ url_for('register') }}">რეგისტრაცია</a></li>
+                        
                     {% endif %}
                 </ul>
             </div>
@@ -69,7 +76,7 @@
 
     <footer class="footer text-center text-muted">
         <div class="container">
-            <small>&copy; 2024 Daily News. Built with Flask & Bootstrap.</small>
+            <small>&copy; 2026 Built By Andria.</small>
         </div>
     </footer>
 
